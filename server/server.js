@@ -7,6 +7,8 @@ const dotenv = require('dotenv').config({
   path: path.join(__dirname, '../.env')
 });
 
+const port = 8080;
+
 
 
 const app = express();
