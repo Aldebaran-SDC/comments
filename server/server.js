@@ -28,6 +28,27 @@ app.get('/comment/:song_id', (req, res) => {
     });
 });
 
+app.post('/api/createComment/:song_id', (req, res) => {
+  console.log(`create comment`);
+  res.send('create Comment now!');
+});
+
+app.patch('/api/updateComment/:song_id/:updateLast', (req, res) => {
+  console.log('update Comment');
+  res.send(`this is song_id: ${req.params.song_id}, updateLast: ${req.params.updateLast}`);
+});
+
+app.delete('/api/deleteComment/:song_id', (req, res) => {
+  console.log('delete Comment');
+  res.send('update comment');
+});
+
+// TAKA CRUD
+//Create - create a comment. Input: songID and comment
+//Read - Read a comment by given id, already implemented
+//Update - update current comment
+//Delete - Delete comment by messageID (mongo's unique id)
+
 app.listen(process.env.PORT, () => {
   console.log(`Server running  on port ${process.env.PORT}...`);
 });
