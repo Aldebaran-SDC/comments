@@ -6,34 +6,27 @@ const postComment = function(params, callback) {
   var comment = new Comments(newComment());
   comment.save((err, data) => {
     if (err){return console.error(err)}
-    console.log(data);
-    mongoose.disconnect();
+    callback(data);
   });
 };
 
-// postComment();
-
-const updateComment = function(params, callback) {
-  Comments.updateOne({comment_id: 1000}, {user_name: 'Test User'}, (err, res) => {
+const updateComment = function({updateString}, callback) {
+  Comments.updateOne({comment_id: 1000}, {message: updateString}, (err, res) => {
     if(err) {return console.error(err)}
-    console.log(res.nModified);
-    mongoose.disconnect();
+    callback(res);
   });
 };
-
-// updateComment();
 
 const deleteComment = function(params, callback) {
   Comments.deleteOne({comment_id: 1000}, (err, res) => {
     if(err) {return console.error(err)}
-    console.log(res.nModified);
-    mongoose.disconnect();
+    callback(res);
   });
 };
 
+// postComment();
+// updateComment();
 // deleteComment();
-
-
 
 module.exports = {postComment, updateComment, deleteComment}
   
