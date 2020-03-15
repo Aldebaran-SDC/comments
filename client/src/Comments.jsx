@@ -82,12 +82,19 @@ class CommentModule extends React.Component {
   }
 
   componentDidMount() {
-      console.log(this.state.songId);
-      axios.get(API_URL + 'comment/' + this.state.songId)
+      // console.log(`Mounting songID: ${this.state.songId}`);
+      // axios.get(API_URL + 'comment/' + this.state.songId)
+      var songId = window.location.pathname.split('/');
+      console.log(window.location.pathname)
+      songId = songId[songId.length-2] !== '' ? songId[songId.length-2] : 1;
+      axios.get(`${localUrl}/comment/${songId}`)
         .then((response) => {
           console.log('successfully recieved comments for song' , response);
           this.setState({
+            songId: songId,
             comments : response.data,
+          }, () => {
+            console.log(`Mounting songID: ${this.state.songId}`);
           });
         })
         .catch((error) => {

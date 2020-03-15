@@ -15,6 +15,7 @@ const {postComment, updateComment, deleteComment} = require('../database/control
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../client/dist')))
+app.use('/song/:song_id', express.static(path.join(__dirname, '../client/dist')))
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan('tiny'));
