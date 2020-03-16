@@ -1,9 +1,15 @@
 /* eslint-disable camelcase */
 const faker = require('faker');
 
-var newComment = function(s_id) {
-  const song_id = 107;
-  const user_id = 201;
+var newComment = function(comment_id) {
+  const song_id = faker.random.number({
+    min: 1,
+    max: 100,
+  });
+  const user_id = faker.random.number({
+    min: 1,
+    max: 100,
+  });
 
   const user_icon = faker.image.avatar();
 
@@ -19,7 +25,7 @@ var newComment = function(s_id) {
     max: 80,
   });
   const newComment = {
-    comment_id: 1000,
+    comment_id,
     song_id,
     user_id,
     user_name,
