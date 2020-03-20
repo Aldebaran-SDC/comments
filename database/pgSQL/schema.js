@@ -8,7 +8,8 @@ const pool = new Pool({
 });
 
 var createTable = 
-`CREATE TABLE comments2 (
+`CREATE TABLE comments (
+  comment_id      integer,
   user_name       character varying,
   user_id         integer,
   user_icon       character varying,
@@ -18,7 +19,18 @@ var createTable =
   posted_at       date
 )`;
 
+// var createTable = 
+// `CREATE TABLE comments2 (
+//   user_name       character varying,
+//   user_id         integer,
+//   user_icon       character varying,
+//   song_id         integer,
+//   message         character varying,
+//   audio_position  integer,
+//   posted_at       date
+// )`;
+
 pool.query(createTable,(err, result) => {
-  if (err) {console.throw(err)}
+  if (err) {console.log(err)}
   console.log(result);
 });

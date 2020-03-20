@@ -4,11 +4,11 @@ const faker = require('faker');
 var newComment = function(comment_id) {
   const song_id = faker.random.number({
     min: 1,
-    max: 100,
+    max: 1000,
   });
   const user_id = faker.random.number({
     min: 1,
-    max: 100,
+    max: 1000,
   });
 
   const user_icon = faker.image.avatar();
@@ -18,7 +18,16 @@ var newComment = function(comment_id) {
   const posted_at = faker.date.recent();
 
   const randomWordCount = Math.floor(Math.random() * 30);
-  const message = faker.random.words(randomWordCount);
+  
+  //update message to have no apostrophe (Breaks syntax for inserting into postgres)
+  var message = faker.random.words(randomWordCount);
+  if(message.split("'").length > 1) {
+    var messages = message.split("'");
+    message = '';
+    messages.forEach((sentence) => {
+      message = message.concat(sentence);
+    })
+  }
 
   const audio_position = faker.random.number({
     min: 1,
@@ -38,5 +47,4 @@ var newComment = function(comment_id) {
   return newComment; 
 }
 
-// console.log(newComment());
 module.exports = {newComment}
