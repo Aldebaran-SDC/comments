@@ -9,3 +9,4 @@ pids
 logs
 *.log
 seedComments*.js
+*.csv

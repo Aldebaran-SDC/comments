@@ -15,7 +15,8 @@ var newComment = function(comment_id) {
 
   const user_name = faker.internet.userName();
 
-  const posted_at = faker.date.recent();
+  const posted_at = Date.parse(faker.date.recent())
+  // console.log(Date.parse(posted_at));
 
   const randomWordCount = Math.floor(Math.random() * 30);
   
@@ -34,14 +35,15 @@ var newComment = function(comment_id) {
     max: 80,
   });
   const newComment = {
+    // id: comment_id,
     comment_id,
-    song_id,
-    user_id,
-    user_name,
-    user_icon,
-    message,
     audio_position,
+    message,
     posted_at,
+    song_id,
+    user_icon,
+    user_id,
+    user_name
   };
 
   return newComment; 
