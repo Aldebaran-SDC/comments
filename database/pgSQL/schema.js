@@ -1,4 +1,9 @@
 const {Pool} = require('pg');
+const path = require('path');
+const dotenv = require('dotenv').config({
+  path: path.join(__dirname, '../../.env')
+});
+
 const pool = new Pool({
   user: 'me',
   host: 'localhost',
@@ -8,7 +13,7 @@ const pool = new Pool({
 });
 
 var createTable = 
-`CREATE TABLE comments (
+`CREATE TABLE ${process.env.tableName} (
   comment_id      integer,
   user_name       character varying,
   user_id         integer,
