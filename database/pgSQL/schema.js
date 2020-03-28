@@ -13,18 +13,21 @@ const pool = new Pool({
 });
 
 var createTable = 
-`CREATE TABLE ${process.env.tableName} (
-  comment_id      integer,
-  user_name       character varying,
-  user_id         integer,
-  user_icon       character varying,
+`CREATE TABLE comments10M (
   song_id         integer,
-  message         character varying,
+  comment_id      integer,
+  user_id         integer,
   audio_position  integer,
-  posted_at       date
+  message         character varying,
+  posted_at       bigint,
+  user_icon       character varying,
+  user_name       character varying
 )`;
+var copyData = `COPY comments10M (song_id,comment_id,user_id,audio_position,message,posted_at,user_icon,user_name) FROM '/Users/takanori.sono/galvanizeRepos/SeniorPhase/database/soundCloudCommentsSongs10M.csv' DELIMITER ',' CSV HEADER;`;
 
-pool.query(createTable,(err, result) => {
+console.time('Time to Query');
+pool.query(copyData,(err, result) => {
   if (err) {console.log(err)}
   console.log(result);
+  console.timeEnd('Time to Query');
 });
