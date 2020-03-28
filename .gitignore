@@ -10,3 +10,4 @@ logs
 *.log
 seedComments*.js
 *.csv
+testSeed.js

@@ -3,21 +3,36 @@ const generateObject = require('./generateScript');
 
 var countCSVFiles = 20;
 
+var header1 = [
+  // {id: 'id', title: 'id'},
+  {id: 'comment_id', title: 'comment_id'},
+  {id: 'audio_position', title: 'audio_position'},
+  {id: 'message', title: 'message'},
+  {id: 'posted_at', title: 'posted_at'},
+  {id: 'song_id', title: 'song_id'},
+  {id: 'user_icon', title: 'user_icon'},
+  {id: 'user_id', title: 'user_id'},
+  {id: 'user_name', title: 'user_name'},
+]
+
+var header2 = [
+  // {id: 'id', title: 'id'},
+  {id: 'comment_id', title: 'comment_id'},
+  {id: 'song_id', title: 'song_id'},
+  {id: 'user_id', title: 'user_id'},
+  {id: 'audio_position', title: 'audio_position'},
+  {id: 'message', title: 'message'},
+  {id: 'posted_at', title: 'posted_at'},
+  {id: 'user_icon', title: 'user_icon'},
+  {id: 'user_name', title: 'user_name'},
+]
+
+
 console.time('Generate All CSV Files');
 const csvWriter = createCsvWriter({
   // path: `testData/commentsData${index}.csv`,
-  path: __dirname + `/commentsData.csv`,
-  header: [
-    // {id: 'id', title: 'id'},
-    {id: 'comment_id', title: 'comment_id'},
-    {id: 'audio_position', title: 'audio_position'},
-    {id: 'message', title: 'message'},
-    {id: 'posted_at', title: 'posted_at'},
-    {id: 'song_id', title: 'song_id'},
-    {id: 'user_icon', title: 'user_icon'},
-    {id: 'user_id', title: 'user_id'},
-    {id: 'user_name', title: 'user_name'},
-  ]
+  path: __dirname + `/commentsData2M.csv`,
+  header: header2
 });
 
 function csvFile(index, callback) {
