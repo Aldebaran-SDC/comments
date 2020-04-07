@@ -1,7 +1,7 @@
 
 const path = require('path');
 const express = require('express');
-const Comments = require('../database/index.js');
+const Comments = require('./controllers/controllers');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv').config({
@@ -26,16 +26,27 @@ app.use(morgan('tiny'));
 //Update - update current comment
 //Delete - Delete comment by messageID (mongo's unique id)
 
-app.get('/comment/:song_id', (req, res) => {
-  Comments.find({ song_id: req.params.song_id })
-    .then((comments) => {
-      res.send(comments);
-      console.log('These are the comments:', comments)
-    })
-    .catch(() => {
-      res.status(404).send('no comments found');
-    });
-});
+
+app.get('/comment/:song_id', Comments.getComments);
+
+// app.get('/comment/:song_id', (req, res) => {
+//   Comments.query(`SELECT * FROM comments10m WHERE song_id = $1`, [req.params.song_id], (err, result) => {
+//     if (err) { throw err };
+//     res.send(result.rows);
+//     console.log(result.rows);
+//   });
+// });
+
+// app.get('/comment/:song_id', (req, res) => {
+//   Comments.find({ song_id: req.params.song_id })
+//     .then((comments) => {
+//       res.send(comments);
+//       // console.log('These are the comments:', comments)
+//     })
+//     .catch(() => {
+//       res.status(404).send('no comments found');
+//     });
+// });
 
 app.post('/api/createComment/:song_id', (req, res) => {
   postComment(req.params.song_id, (post) => {
