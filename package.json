@@ -11,7 +11,8 @@
     "seed": "node --max-old-space-size=7000 database/generateData/generateCSV.js --lines 10 --output testScript.csv",
     "cass": "node database/cassandra/schema.js",
     "pg": "node database/pgSQL/schema.js",
-    "start": "webpack --watch"
+    "start": "webpack --watch",
+    "testServer": "artillery quick --count 500 -n 2 http://localhost:8080/song/9999000"
   },
   "author": "David Orr",
   "license": "ISC",
@@ -27,6 +28,7 @@
     "mongodb": "^3.5.2",
     "mongoose": "^5.8.10",
     "morgan": "^1.9.1",
+    "newrelic": "^6.5.0",
     "nodemon": "^2.0.2",
     "pg": "^7.18.2",
     "react": "^16.12.0",

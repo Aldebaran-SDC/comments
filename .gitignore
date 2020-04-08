@@ -11,3 +11,4 @@ logs
 seedComments*.js
 *.csv
 testSeed.js
+stressTest.js

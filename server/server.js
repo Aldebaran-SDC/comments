@@ -1,4 +1,4 @@
-
+require('newrelic');
 const path = require('path');
 const express = require('express');
 const Comments = require('./controllers/controllers');
@@ -27,7 +27,9 @@ app.use(morgan('tiny'));
 //Delete - Delete comment by messageID (mongo's unique id)
 
 
-app.get('/comment/:song_id', Comments.getComments);
+app.get('/comment/:song_id', Comments.pgGetComments);
+
+app.get('/lastComment', Comments.pgLastComment)
 
 // app.get('/comment/:song_id', (req, res) => {
 //   Comments.query(`SELECT * FROM comments10m WHERE song_id = $1`, [req.params.song_id], (err, result) => {

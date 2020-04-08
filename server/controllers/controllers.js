@@ -7,7 +7,15 @@ var pgGetComments = (req, res) => {
   pgSQL.query(`SELECT * FROM comments10m WHERE song_id = $1`, [req.params.song_id], (err, result) => {
     if (err) { throw err };
     res.send(result.rows);
-    console.log(result.rows);
+    // console.log(result.rows);
+  });
+}
+
+var pgLastComment = (req, res) => {
+  pgSQL.query(`SELECT * FROM comments10m WHERE song_id = $1`, [req.params.song_id], (err, result) => {
+    if (err) { throw err };
+    res.send(result.rows);
+    // console.log(result.rows);
   });
 }
 
@@ -25,4 +33,4 @@ var mongoGetComments = (req, res) => {
 
 
 // module.exports.getComments = mongoGetComments;
-module.exports.getComments = pgGetComments;
+module.exports = { pgGetComments, pgLastComment};
