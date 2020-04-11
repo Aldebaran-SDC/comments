@@ -20,35 +20,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan('tiny'));
 
+app.get('/comment/:song_id', Comments.pgGetComments);
+app.get('/postRandomComment/:song_id', Comments.pgPostRandomComment);
+
+
 // TAKA CRUD
 //Create - create a comment. Input: songID and comment
 //Read - Read a comment by given id, already implemented
 //Update - update current comment
 //Delete - Delete comment by messageID (mongo's unique id)
-
-
-app.get('/comment/:song_id', Comments.pgGetComments);
-
-app.get('/postRandomComment/:song_id', Comments.pgPostRandomComment);
-
-// app.get('/comment/:song_id', (req, res) => {
-//   Comments.query(`SELECT * FROM comments10m WHERE song_id = $1`, [req.params.song_id], (err, result) => {
-//     if (err) { throw err };
-//     res.send(result.rows);
-//     console.log(result.rows);
-//   });
-// });
-
-// app.get('/comment/:song_id', (req, res) => {
-//   Comments.find({ song_id: req.params.song_id })
-//     .then((comments) => {
-//       res.send(comments);
-//       // console.log('These are the comments:', comments)
-//     })
-//     .catch(() => {
-//       res.status(404).send('no comments found');
-//     });
-// });
 
 app.post('/api/createComment/:song_id', (req, res) => {
   postComment(req.params.song_id, (post) => {

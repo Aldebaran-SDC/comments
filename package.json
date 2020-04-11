@@ -12,7 +12,8 @@
     "cass": "node database/cassandra/schema.js",
     "pg": "node database/pgSQL/schema.js",
     "buildDev": "webpack --watch",
-    "testServer": "artillery run stressTest.yml"
+    "testServer": "artillery run stressTest.yml",
+    "testServerPost": "artillery run stressTestPost.yml"
   },
   "author": "David Orr",
   "license": "ISC",

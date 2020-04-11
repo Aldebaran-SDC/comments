@@ -5,10 +5,11 @@ import axios from 'axios';
 const localUrl = 'http://localhost:8080';
 const prodUrl = 'http://ec2-34-220-99-82.us-west-2.compute.amazonaws.com:8080/';
 const API_URL = (window.location.host === 'localhost:8080') ? localUrl : prodUrl;
-console.log('this is localUrl: ', localUrl);
-console.log('this is prodUrl: ', prodUrl);
-console.log('API_URL: ', API_URL);
-console.log('...cheese');
+// console.log('this is localUrl: ', localUrl);
+// console.log('this is prodUrl: ', prodUrl);
+// console.log('API_URL: ', API_URL);
+// console.log('...cheese');
+moment().format();
 
 var convertTimestamp = function(timestamp) {
   if (timestamp > 60) {
@@ -51,6 +52,8 @@ class CommentList extends React.Component {
 
 class Comment extends React.Component {
   render() {
+    // console.log(this.props.posted_at);
+    // console.log(moment(parseInt(this.props.posted_at)).format());
     return (
       <div className='comment'>
 
@@ -60,7 +63,8 @@ class Comment extends React.Component {
             <span className="comment_username">{this.props.author}</span>
             <span className="comment_at"> at </span>
             <span className="comment_timestamp">{convertTimestamp(this.props.audio_position)}</span>
-            <span className="comment_postedAt">{moment(this.props.posted_at).fromNow()}</span>
+            {/* <span className="comment_postedAt">{moment(this.props.posted_at).fromNow()}</span> */}
+            <span className="comment_postedAt">{moment(parseInt(this.props.posted_at)).fromNow()}</span>
             <div className="comment_text_container">
               <p className="comment_text">{this.props.text}</p>
             </div>
