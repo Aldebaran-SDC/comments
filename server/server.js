@@ -29,7 +29,7 @@ app.use(morgan('tiny'));
 
 app.get('/comment/:song_id', Comments.pgGetComments);
 
-app.get('/lastComment', Comments.pgLastComment)
+app.get('/postRandomComment/:song_id', Comments.pgPostRandomComment);
 
 // app.get('/comment/:song_id', (req, res) => {
 //   Comments.query(`SELECT * FROM comments10m WHERE song_id = $1`, [req.params.song_id], (err, result) => {
