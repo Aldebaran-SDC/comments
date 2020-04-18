@@ -3,8 +3,8 @@ import React from 'react';
 import moment from 'moment';
 import axios from 'axios';
 const localUrl = 'http://localhost:8080';
-const prodUrl = 'http://ec2-34-220-99-82.us-west-2.compute.amazonaws.com:8080/';
-const API_URL = (window.location.host === 'localhost:8080') ? localUrl : prodUrl;
+// const prodUrl = 'http://ec2-34-220-99-82.us-west-2.compute.amazonaws.com:8080/';
+// const API_URL = (window.location.host === 'localhost:8080') ? localUrl : prodUrl;
 // console.log('this is localUrl: ', localUrl);
 // console.log('this is prodUrl: ', prodUrl);
 // console.log('API_URL: ', API_URL);
@@ -90,7 +90,9 @@ class CommentModule extends React.Component {
       // axios.get(API_URL + 'comment/' + this.state.songId)
       var songId = window.location.pathname.split('/');
       console.log(window.location.pathname)
-      songId = songId[songId.length-2] !== '' ? songId[songId.length-2] : 1;
+      // songId = songId[songId.length-2] !== '' ? songId[songId.length-2] : 1;
+      songId = songId[songId.length-2] === 'songs' ? songId[songId.length-1] : songId[songId.length-2] === '' ? 1 : songId[songId.length-2];
+      console.log(`this is songID that comments service sees: ${songId}`)
       axios.get(`${localUrl}/comment/${songId}`)
         .then((response) => {
           console.log('successfully recieved comments for song' , response);

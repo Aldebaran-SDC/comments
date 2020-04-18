@@ -21,7 +21,8 @@ app.use(cors());
 app.use(morgan('tiny'));
 
 app.get('/comment/:song_id', Comments.pgGetComments);
-app.get('/postRandomComment/:song_id', Comments.pgPostRandomComment);
+app.get('/postRandomComment', Comments.pgPostRandomComment);
+app.get('/postComment/:song_id', Comments.pgPostComment);
 
 
 // TAKA CRUD

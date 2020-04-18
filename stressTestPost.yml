@@ -3,14 +3,14 @@ config:
   phases:
     - duration: 1
       arrivalRate: 10
-      name: "Testing 10 Post requests"
-    # - duration: 1
-    #   arrivalRate: 100
-    #   name: "Testing 100 Post requests"
-    # - duration: 10
-    #   arrivalRate: 1000
-    #   name: "Testing 1000 Post requests/sec for 10 seconds"
+      name: "Testing 10 Post requests to random song IDs"
+    - duration: 1
+      arrivalRate: 100
+      name: "Testing 100 Post requests to random song IDs"
+    - duration: 10
+      arrivalRate: 100
+      name: "Testing 1000 Post requests/sec for 10 seconds"
 scenarios:
   - flow:
       - get:
-          url: "/postRandomComment/5"
+          url: "/postRandomComment"

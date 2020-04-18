@@ -13,6 +13,16 @@ var pgGetComments = (req, res) => {
 }
 
 var pgPostRandomComment = (req, res) => {
+  var newPost = newComment(-1);
+  const tableCols = `(song_id,user_id,audio_position,message,posted_at,user_icon,user_name)`;
+  //write psql query for new post here
+  pgSQL.query(`INSERT INTO comments10m ${tableCols} VALUES ($1, $2, $3, $4, $5, $6, $7)`, newPost, (err, result) => {
+    if(err) {throw err};
+    res.send(`Random post created for song ${newPost[0]} with comment id`);
+  });
+}
+
+var pgPostComment = (req, res) => {
   console.log('request recieved')
   pgSQL.query('SELECT comment_id FROM comments10m ORDER BY comment_id DESC LIMIT 1', (err, result) => {
     if(err) {throw err};
@@ -22,7 +32,7 @@ var pgPostRandomComment = (req, res) => {
     //write psql query for new post here
     pgSQL.query(`INSERT INTO comments10m ${tableCols} VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`, newPost, (err, result) => {
       if(err) {throw err};
-      res.send(result);
+      res.send(`New post created for song ${newPost[0]} with comment id ${newPost[1]}`);
     })
   })
 }
@@ -41,4 +51,4 @@ var mongoGetComments = (req, res) => {
 
 
 // module.exports.getComments = mongoGetComments;
-module.exports = { pgGetComments, pgPostRandomComment};
+module.exports = { pgGetComments, pgPostRandomComment, pgPostComment};
