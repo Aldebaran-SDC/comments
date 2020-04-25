@@ -1,2 +1,6 @@
 aws-keys.json
+/client/src
+/old_html_framework
+Gruntfile.js
+Dockerfile
 
