@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "reactstart": "webpack-dev-server --mode development --open --hot",
-    "start": "nodemon server/server.js",
+    "start": "ec2Host=3.101.21.253 node server/server.js",
+    "startDev": "nodemon server/server.js",
     "build": "webpack --mode production --watch",
     "seed": "node --max-old-space-size=7000 database/generateData/generateCSV.js --lines 10 --output testScript.csv",
     "cass": "node database/cassandra/schema.js",

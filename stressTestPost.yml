@@ -10,6 +10,10 @@ config:
     - duration: 10
       arrivalRate: 100
       name: "Testing 1000 Post requests/sec for 10 seconds"
+    - duration: 60
+      arrivalRate: 100
+      rampTo: 1000
+      name: "Ramp to 1000 arrival rate in 60 seconds"
 scenarios:
   - flow:
       - get:

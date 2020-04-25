@@ -4,13 +4,8 @@ const express = require('express');
 const Comments = require('./controllers/controllers');
 const cors = require('cors');
 const morgan = require('morgan');
-const dotenv = require('dotenv').config({
-  path: path.join(__dirname, '../.env')
-});
-
-const port = 8080;
+const dotenv = require('dotenv');
 const {postComment, updateComment, deleteComment} = require('../database/controller');
-
 
 const app = express();
 
@@ -20,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan('tiny'));
 
+app.get('/testing', (req, res) => res.send('You pinged the server correctly!')) 
 app.get('/comment/:song_id', Comments.pgGetComments);
 app.get('/postRandomComment', Comments.pgPostRandomComment);
 app.get('/postComment/:song_id', Comments.pgPostComment);
