@@ -16,7 +16,7 @@ var host2 = '54.193.80.70'; //EC2b instance
 //Connection to docker container on EC2 instance
 const pool = new Pool({
   user: 'postgres',
-  host: host2,
+  host: host1,
   database: 'soundcloud',
   password: 'password',
   port: 5433

@@ -4,12 +4,12 @@ import moment from 'moment';
 import axios from 'axios';
 
 //SET env var in dockerfile for production;
-var localUrl = "http://localhost:8080";
+// var localUrl = "http://localhost:8080";
 // if (process.env.ec2Host) {
 //   localUrl = `http://${process.env.ec2Host}:8000`;
 // }
-// var localUrl = `http://3.101.21.253:8080`;
-// var localUrl = `http://54.193.80.70`;
+var localUrl = `http://3.101.21.253:8080`;
+// var localUrl = `http://54.193.80.70:8080`;
 
 moment().format();
 
@@ -88,10 +88,12 @@ class CommentModule extends React.Component {
   }
 
   componentDidMount() {
+    console.log(`bundle.js from S3 is being loaded`)
       var songId = window.location.pathname.split('/');
       songId = songId[songId.length-2] === 'songs' ? songId[songId.length-1] : songId[songId.length-2] === '' ? 1 : songId[songId.length-2];
       axios
-				.get(`${localUrl}/comment/${songId}`)
+				// .get(`${localUrl}/comment/${songId}`)
+				.get(`/comment/${songId}`)
 				.then((response) => {
 					this.setState(
 						{

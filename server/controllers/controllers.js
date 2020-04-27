@@ -1,12 +1,24 @@
 const mongodb = require('../../database/index.js');
-const pgSQL = require('../../database/pgSQL/index');
-const {newComment} = require('../../database/postComment')
+const pgSQL = require('../../database/pgSQL/index.js');
+const {newComment} = require('../../database/postComment.js')
 
 // Define which database to use: mongodb or pgsql
 
+var pgGetTest = (req, res) => {
+  console.log('inside pgGetComments')
+  pgSQL.query(`SELECT * FROM comments10m WHERE song_id = 1 ORDER BY posted_at ASC`, (err, result) => {
+    if (err) { throw err };
+    console.log('response sent')
+    res.send(result.rows);
+    // console.log(result.rows);
+  });
+}
+
 var pgGetComments = (req, res) => {
+  console.log('inside pgGetComments')
   pgSQL.query(`SELECT * FROM comments10m WHERE song_id = $1 ORDER BY posted_at ASC`, [req.params.song_id], (err, result) => {
     if (err) { throw err };
+    console.log('response sent')
     res.send(result.rows);
     // console.log(result.rows);
   });
@@ -51,4 +63,4 @@ var mongoGetComments = (req, res) => {
 
 
 // module.exports.getComments = mongoGetComments;
-module.exports = { pgGetComments, pgPostRandomComment, pgPostComment};
+module.exports = { pgGetComments, pgPostRandomComment, pgPostComment, pgGetTest};

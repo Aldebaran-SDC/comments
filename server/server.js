@@ -19,6 +19,7 @@ app.get('/testing', (req, res) => res.send('You pinged the server correctly!'))
 app.get('/comment/:song_id', Comments.pgGetComments);
 app.get('/postRandomComment', Comments.pgPostRandomComment);
 app.get('/postComment/:song_id', Comments.pgPostComment);
+app.get('/getTest', Comments.pgGetTest);
 
 
 // TAKA CRUD

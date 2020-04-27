@@ -15,7 +15,7 @@
     "buildDev": "webpack --watch",
     "testServer": "artillery run stressTest.yml",
     "testServerPost": "artillery run stressTestPost.yml",
-    "docker": "docker build -t taktaktaka/soundcloud_comments:deploy4 ."
+    "docker": "docker build -t taktaktaka/soundcloud_comments:deploy7 ."
   },
   "author": "David Orr",
   "license": "ISC",
