@@ -8,3 +8,7 @@ pids
 *.pid
 logs
 *.log
+seedComments*.js
+*.csv
+testSeed.js
+stressTest.js

@@ -16,7 +16,11 @@ const lorem = new LoremIpsum({
 var today = new Date();
 
 //DATA GENERATION:
-var newComment = function(comment_id, song_id = -1) {  
+var newComment = function(comment_id, song_id) {  
+
+  if (!song_id) {
+    var song_id = Math.floor(Math.random() * 10000000);
+  }
   
   const user_id = faker.random.number({
     min: 1,
@@ -32,7 +36,16 @@ var newComment = function(comment_id, song_id = -1) {
     max: 80,
   });
 
-  return `${song_id},${comment_id},${user_id},${audio_position},${message},${posted_at},${user_icon},${user_name}\n`
+  return [
+    song_id,
+    // comment_id,
+    user_id,
+    audio_position,
+    message,
+    posted_at,
+    user_icon,
+    user_name,
+  ]
 }
 
 module.exports = {newComment}

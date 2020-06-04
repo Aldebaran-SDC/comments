@@ -1,0 +1,20 @@
+config:
+  target: "http://localhost:8080"
+  phases:
+    - duration: 1
+      arrivalRate: 10
+      name: "Testing 10 requests"
+    - duration: 1
+      arrivalRate: 100
+      name: "Testing 100 requests"
+    - duration: 10
+      arrivalRate: 100
+      name: "Testing 1000 requests in 10 seconds"
+    - duration: 60
+      arrivalRate: 100
+      rampTo: 1000
+      name: "Ramp to 1000 arrival rate in 60 seconds"
+scenarios:
+  - flow:
+      - get:
+          url: "/song/9999000"
